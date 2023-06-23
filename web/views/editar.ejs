@@ -1,0 +1,68 @@
+<%- include layouts/header.ejs %>
+
+<style>
+    .container {
+        background-color: rgba(0, 0, 0, 0.2); /* Color de fondo borroso */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra alrededor del cuadro */
+        margin: 20px auto; /* Centrar el cuadro en la página */
+        max-width: 500px; /* Ancho máximo del cuadro */
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: none;
+        background-color: #f8f9fa; /* Color de fondo de los campos de formulario */
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Color de fondo del botón */
+        border-color: #007bff; /* Color del borde del botón */
+        color: #fff; /* Color del texto del botón */
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0069d9; /* Color de fondo del botón al pasar el cursor */
+        border-color: #0062cc; /* Color del borde del botón al pasar el cursor */
+    }
+</style>
+
+<div class="container">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <form action="/editar/<%=productData.ID %>" method="POST">
+        <input type="hidden" name="id" value="<%= productId %>">
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Producto</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="<%= productData.titulo %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="text" class="form-control" id="imagen" name="imagen" value="<%= productData.imagen %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" rows="3" value="<%= productData.descripcion %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" step="0.01" class="form-control" id="precio" name="precio" value="<%= productData.precio %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary" name="guardar">Guardar</button>
+    </form>
+</div>
+
+<%- include layouts/footer.ejs %>

@@ -1,0 +1,78 @@
+<%- include layouts/header.ejs %>
+
+<style>
+  .container {
+    text-align: center;
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    margin-bottom: 30px;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .botones {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    margin: 0 5px;
+  }
+</style>
+
+<div class="container">
+  <h1><%= title %></h1>
+
+  <!-- Leer la informacion de la Base de Datos -->
+  <div class="row">
+    <% for(var i=0; i<Guantes.length; i++){ %>
+      <% arregloID.push(i); %>
+      <div class="col-sm-4">
+        <div class="card">
+          <img src="<%= Guantes[i].imagen %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= Guantes[i].titulo %></h5>
+            <p class="card-text"><%= Guantes[i].descripcion %></p>
+            <p class="card-text">Precio: $<%= Guantes[i].precio %></p>
+            <div class="botones">
+              <a class="btn btn-outline-primary">Comprar</a>
+              <a href="editar/<%= Guantes[i].ID %>" class="btn btn-outline-info">Editar</a>
+              <form method="post" action="borrar">
+                <input type="hidden" name="productId" value="<%= Guantes[i].ID %>">
+                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include layouts/footer.ejs %>
